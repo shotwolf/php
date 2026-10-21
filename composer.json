@@ -23,8 +23,8 @@
     ],
     "support": {
         "email": "hello@shotwolf.com",
-        "issues": "https://github.com/shotwolf/php/issues",
-        "source": "https://github.com/shotwolf/php",
+        "issues": "https://github.com/shotwolf/shotwolf-php/issues",
+        "source": "https://github.com/shotwolf/shotwolf-php",
         "docs": "https://shotwolf.com/docs/sdks/"
     },
     "require": {
