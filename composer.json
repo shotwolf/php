@@ -1,0 +1,52 @@
+{
+    "name": "shotwolf/shotwolf",
+    "description": "Official PHP SDK for the ShotWolf screenshot, mockup, OG image, HTML-to-PDF and visual-diff API. Zero runtime dependencies.",
+    "keywords": [
+        "shotwolf",
+        "screenshot",
+        "screenshot-api",
+        "og-image",
+        "html-to-pdf",
+        "visual-regression",
+        "mockup",
+        "device-frame"
+    ],
+    "homepage": "https://shotwolf.com",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "ShotWolf",
+            "email": "hello@shotwolf.com",
+            "homepage": "https://shotwolf.com"
+        }
+    ],
+    "support": {
+        "email": "hello@shotwolf.com",
+        "docs": "https://shotwolf.com/docs/sdks/"
+    },
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "ShotWolf\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ShotWolf\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

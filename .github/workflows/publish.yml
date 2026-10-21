@@ -1,0 +1,40 @@
+name: Publish to Packagist
+
+# Packagist publishes new versions automatically from git tags via its GitHub
+# webhook (set up once at packagist.org). This workflow only gates the tag:
+# it runs the test suite and verifies the tag matches Client::VERSION so a
+# mismatched release never reaches Packagist. Push a tag like v0.1.0.
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.1"
+          extensions: curl, json
+          coverage: none
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Test
+        run: composer test
+
+      - name: Verify tag matches Client::VERSION
+        run: |
+          VER=$(php -r 'require "src/Client.php"; echo ShotWolf\Client::VERSION;')
+          TAG=${GITHUB_REF_NAME#v}
+          if [ "$VER" != "$TAG" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match Client::VERSION $VER" >&2
+            exit 1
+          fi
